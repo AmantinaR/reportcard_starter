@@ -251,6 +251,7 @@ function updateReportCard(reportCardTableElement, currentSemester) {
   addTotalsRow(reportCardTableElement);
   addGpaRow(reportCardTableElement);
   addUpStudentCredits(reportCardTableElement);
+  calculateSemesterGpa(reportCardTableElement);
   
 }
 
@@ -367,6 +368,20 @@ function addUpStudentCredits(reportCardTableElement) {
 
 function calculateSemesterGpa(reportCardTableElement) {
   // code goes here
+  let sum = 0;
+  let numClass = 0;
+  const rows = reportCardTableElement.querySelectorAll("div.table-row.course-row");
+  rows.forEach((course) => {
+    const grade = course.querySelector(".lett-col").innerHTML;
+    const points = gpaPointsLookup[grade];
+    sum += points;
+    course.querySelector(".pts-col").innerHTML = points;
+    numClass ++;
+  });
+  let gpaScore = Math.trunc((sum/numClass)*100)/100;
+  reportCardTableElement.querySelector("#total-pts").innerHTML = sum;
+  reportCardTableElement.querySelector("#gpa").innerHTML = gpaScore;
+
 }
 
 window.onload = function () {
