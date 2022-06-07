@@ -943,6 +943,7 @@ describe("Report Card Generator", () => {
         const openDropdownWasCalled = Boolean(openDropdownSpy.__spy.called)
         const firstOpenDropdownCallArguments = openDropdownSpy.__spy.calls[0]
 
+
         assert(
           openDropdownWasCalled && firstOpenDropdownCallArguments[0] === dropdownElement,
           "The `openDropdown` function was not called when the dropdown button element was clicked on. Make sure to add an event listener to the button that handles clicks."
